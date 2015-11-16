@@ -9,3 +9,9 @@ default:
 		| pandoc -r html -w markdown_github \
 		> $$gallery.md; \
 	done;
+
+scrub-markdown:
+	perl -0777 -i -pe ' \
+		s/\*\*\*\*\n\n?//igs; \
+		s/<span class=".*?">(.*?)<\/span>/\1/igs \
+	' *.md
